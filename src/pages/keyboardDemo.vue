@@ -14,12 +14,11 @@
 </template>
 
 <script>
-import mathKeyboard from '../lib/keyboard'
+import mathKeyboard from '../components/keyboard'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       show:false,
       value:'',
       editId: 'mathinput'

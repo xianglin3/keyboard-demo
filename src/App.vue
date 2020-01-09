@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <h1>dream home</h1>
+    <p>
+      <router-link  to='/route-demo'>routeDemo</router-link>
+      <router-link  to='/keyboard'>keyboard</router-link>
+    </p>
     <router-view/>
   </div>
 </template>

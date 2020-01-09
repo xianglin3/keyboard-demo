@@ -137,10 +137,6 @@ export default {
         }
       });
       that.mathField.latex(that.value)
-      // window.onresize = function(){
-      //   var content = $('#mathinput .mq-root-block')
-      //   content.scrollLeft(content[0].scrollWidth)
-      // }
     },
     insertar(valor) {
       console.log(valor)
@@ -152,21 +148,14 @@ export default {
         this.$emit('update:val', '')
       } else {        
         console.log(this.mathField.latex(), valor)
-          // this.mathField.cmd(valor);
         if (this.mathField.latex().indexOf('frac') == -1 && valor == '/') {
-          // that.mathField.write(that.value)
           that.mathField.latex(this.mathField.latex() + '\\frac{}{1}')
           that.mathField.keystroke('Backspace');
           that.mathField.keystroke('Backspace');
-          // this.mathField.cmd(valor);
         } else if (valor != '/') {
           this.mathField.cmd(valor);
         }
       }
-    },
-    keyhide(event){
-      this.$emit('update:show',false)
-      this.$emit('update:val',this.value)
     },
     // 提交
     submit(){
@@ -176,17 +165,10 @@ export default {
   },
   watch:{
     value(nval,oval){
-      if(!this.show){
-        this.mathField.latex(this.value)
-      }
-      // var content = $('#mathinput .mq-root-block')
-      // content.scrollLeft(content[0].scrollWidth)
-    },
-    // loadState(val){
-    //   if(val){
-    //     this.initMathQuill()
-    //   }
-    // }
+      // 自适应输入框 保证输入内容可见
+      var content = $('#mathinput .mq-root-block')
+      content.scrollLeft(content[0].scrollWidth)
+    }
   }
 };
 </script>
