@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import keyboardDemo from '@/pages/keyboardDemo'
-import routeDemo from '@/pages/routeDemo'
+import mathJax from '@/pages/mathJax'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: keyboardDemo
     },
     {
-      path: '/route-demo',
-      name: 'routeDemo',
-      component: routeDemo
+      path: '/math-jax',
+      name: 'mathJax',
+      component: mathJax
     }
   ]
 })

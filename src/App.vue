@@ -2,23 +2,48 @@
   <div id="app">
     <h1>dream home</h1>
     <p>
-      <router-link  to='/route-demo'>routeDemo</router-link>
-      <router-link  to='/keyboard'>keyboard</router-link>
+      <router-link to='/math-jax'>mathJax</router-link>
+      <router-link to='/keyboard'>keyboard</router-link>
     </p>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 import 'flex.css'
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      //
+    }
+  },
+  methods: {
+    initMathJax () {
+      MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        showProcessingMessages: false,
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { "styles": { ".MathJax_Display": { "display": "inline-block", "width": "auto", "text-align": "center!important", "text-indent": "0em", "margin": "0" } }, linebreaks: { automatic: false, width: "hb-container" }, scale: 100, minScaleAdjust: 50 },
+        SVG: { linebreaks: { automatic: false }, scale: 100, },
+        jax: ["input/TeX", "output/SVG", "output/PreviewHTML"],
+        extensions: ["tex2jax.js"],
+        TeX: {
+          extensions: ["AMSmath.js", "AMSsymbols.js", "noErrors.js", "noUndefined.js"]
+        }
+      });
+      MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+    },
+  },
+  mounted () {
+    // this.initMathJax()
+  }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
