@@ -13,12 +13,12 @@ export default {
   name: 'mathJax',
   data () {
     return {
-      text: '小明走了$\\frac{1}{2}\\times34\\div12$米，请问，他走了多久？'
+      text: '$小明走了\\frac{1}{2}\\times34\\div12米，请问，他走了多久？$'
     }
   },
   methods: {
     testbtn () {
-      this.text = `$$\\frac{${Date.now()}}{${Math.ceil(Math.random() * 100)}}$$`
+      this.text = `$$\\frac{${Date.now()}}{${Math.floor(Math.random() * 100)}}$$`
     },
     backFun () {
       // alert('hello world')

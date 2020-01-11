@@ -22,14 +22,17 @@ export default {
     initMathJax () {
       MathJax.Hub.Config({
         tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        messageStyle: "none", //不显示信息
         showProcessingMessages: false,
-        CommonHTML: { linebreaks: { automatic: true } },
-        "HTML-CSS": { "styles": { ".MathJax_Display": { "display": "inline-block", "width": "auto", "text-align": "center!important", "text-indent": "0em", "margin": "0" } }, linebreaks: { automatic: false, width: "hb-container" }, scale: 100, minScaleAdjust: 50 },
         SVG: { linebreaks: { automatic: false }, scale: 100, },
         jax: ["input/TeX", "output/SVG", "output/PreviewHTML"],
         extensions: ["tex2jax.js"],
         TeX: {
           extensions: ["AMSmath.js", "AMSsymbols.js", "noErrors.js", "noUndefined.js"]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], //可选字体
+          showMathMenu: false //关闭右击菜单显示
         }
       });
       MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
