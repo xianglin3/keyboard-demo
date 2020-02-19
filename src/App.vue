@@ -4,6 +4,7 @@
     <p>
       <router-link to='/math-jax'>mathJax</router-link>
       <router-link to='/keyboard'>keyboard</router-link>
+      <router-link to='/swiper-photo'>图片轮播</router-link>
     </p>
     <router-view />
   </div>
