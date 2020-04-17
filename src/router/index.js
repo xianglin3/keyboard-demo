@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import keyboardDemo from '@/pages/keyboardDemo'
 import mathJax from '@/pages/mathJax'
 import swiperPhoto from '@/pages/swiperPhoto'
+import photoCropper from '@/pages/photoCropper'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/swiper-photo',
       name: 'swiperPhoto',
       component: swiperPhoto
+    },
+    {
+      path: '/photo-cropper',
+      name: 'photoCropper',
+      component: photoCropper
     }
   ]
 })
