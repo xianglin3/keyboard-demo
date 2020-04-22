@@ -180,13 +180,13 @@ export default {
         full: false,
         outputType: 'png',
         canMove: true,
-        fixedBox: false,
+        fixedBox: true,
         original: false,
         canMoveBox: true,
         autoCrop: true,
         // 只有自动截图开启 宽度高度才生效
         autoCropWidth: 200,
-        autoCropHeight: 150,
+        autoCropHeight: 200,
         centerBox: false,
         high: true
       },
