@@ -6,6 +6,7 @@
       <router-link to='/keyboard'>keyboard</router-link>
       <router-link to='/swiper-photo'>图片轮播</router-link>
       <router-link to='/photo-cropper'>图片裁剪</router-link>
+      <router-link to='/trajectory-dyn'>轨迹运动</router-link>
     </p>
     <router-view />
   </div>

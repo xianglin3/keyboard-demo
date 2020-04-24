@@ -4,6 +4,7 @@ import keyboardDemo from '@/pages/keyboardDemo'
 import mathJax from '@/pages/mathJax'
 import swiperPhoto from '@/pages/swiperPhoto'
 import photoCropper from '@/pages/photoCropper'
+import trajectoryDyn from '@/pages/trajectoryDyn'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/photo-cropper',
       name: 'photoCropper',
       component: photoCropper
+    },
+    {
+      path: '/trajectory-dyn',
+      name: 'trajectoryDyn',
+      component: trajectoryDyn
     }
   ]
 })
