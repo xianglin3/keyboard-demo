@@ -5,6 +5,7 @@ import mathJax from '@/pages/mathJax'
 import swiperPhoto from '@/pages/swiperPhoto'
 import photoCropper from '@/pages/photoCropper'
 import trajectoryDyn from '@/pages/trajectoryDyn'
+import soundWave from '@/pages/soundWave'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/trajectory-dyn',
       name: 'trajectoryDyn',
       component: trajectoryDyn
+    },
+    {
+      path: '/sound-wave',
+      name: 'soundWave',
+      component: soundWave
     }
   ]
 })
