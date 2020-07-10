@@ -38,23 +38,23 @@
       </div>
     </div>
     <!-- 日志输出区域 -->
-    <div class="mainBox">
+    <!-- <div class="mainBox">
       <div class="console.log"></div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
 //必须引入的核心，换成require也是一样的。注意：recorder-core会自动往window下挂载名称为Recorder对象，全局可调用window.Recorder，也许可自行调整相关源码清除全局污染
-import Recorder from 'recorder-core'
+// import Recorder from 'recorder-core'
 
-//需要使用到的音频格式编码引擎的js文件统统加载进来
-import 'recorder-core/src/engine/mp3'
-import 'recorder-core/src/engine/mp3-engine'
-//可选的扩展支持项 
-import 'recorder-core/src/extensions/waveview' // 动态波形显示
-import 'recorder-core/src/extensions/frequency.histogram.view' // 频率直方图显示
-import 'recorder-core/src/extensions/lib.fft.js'
-import 'recorder-core/src/extensions/wavesurfer.view' // 音频可视化波形显示
+// //需要使用到的音频格式编码引擎的js文件统统加载进来
+// import 'recorder-core/src/engine/mp3'
+// import 'recorder-core/src/engine/mp3-engine'
+// //可选的扩展支持项 
+// import 'recorder-core/src/extensions/waveview' // 动态波形显示
+// import 'recorder-core/src/extensions/frequency.histogram.view' // 频率直方图显示
+// import 'recorder-core/src/extensions/lib.fft.js'
+// import 'recorder-core/src/extensions/wavesurfer.view' // 音频可视化波形显示
 export default {
   name: 'soundWave',
   data () {
