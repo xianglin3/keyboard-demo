@@ -95,7 +95,7 @@ export default {
       carouselTime: 0, // 2min轮播一次
       countTime: 5,
       isshow: 'img',
-      showStudentsNum: 5, // 座位席人数
+      showStudentsNum: 6, // 座位席人数
       callData: {
         id: 100,
         scale: 1.2,
@@ -159,7 +159,7 @@ export default {
           }
           this.carouselTime = 0
           this.setImgOrder(this.stuIndex, this.order)
-          if (this.stuIndex < 7) {
+          if (this.stuIndex < this.imgList.length - 1) {
             this.stuIndex++ // 3s轮播一位学生
           } else {
             this.stuIndex = 0
@@ -200,7 +200,7 @@ export default {
 .show {
   border: 5px solid #c1c1c1;
   margin: 100px auto;
-  width: 500px;
+  width: 600px;
   // height: 200px;
   overflow: hidden;
 }
@@ -216,7 +216,7 @@ export default {
   background-color: black;
 }
 .live-main {
-  width: 500px;
+  width: 600px;
   height: 400px;
   position: relative;
   background: burlywood;
