@@ -6,6 +6,7 @@ import swiperPhoto from '@/pages/swiperPhoto'
 import photoCropper from '@/pages/photoCropper'
 import trajectoryDyn from '@/pages/trajectoryDyn'
 import soundWave from '@/pages/soundWave'
+import orderCarousel from '@/pages/orderCarousel'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/sound-wave',
       name: 'soundWave',
       component: soundWave
+    },
+    {
+      path: '/order-carousel',
+      name: 'orderCarousel',
+      component: orderCarousel
     }
   ]
 })

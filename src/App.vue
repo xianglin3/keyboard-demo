@@ -8,6 +8,7 @@
       <router-link to='/photo-cropper'>图片裁剪</router-link>
       <router-link to='/trajectory-dyn'>轨迹运动</router-link>
       <router-link to='/sound-wave'>音波图</router-link>
+      <router-link to='/order-carousel'>上台连麦</router-link>
     </p>
     <router-view />
   </div>
