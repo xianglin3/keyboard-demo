@@ -7,6 +7,7 @@ import photoCropper from '@/pages/photoCropper'
 import trajectoryDyn from '@/pages/trajectoryDyn'
 import soundWave from '@/pages/soundWave'
 import orderCarousel from '@/pages/orderCarousel'
+import drawSound from '@/pages/drawSound'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/order-carousel',
       name: 'orderCarousel',
       component: orderCarousel
+    },
+    {
+      path: '/draw-sound',
+      name: 'drawSound',
+      component: drawSound
     }
   ]
 })
