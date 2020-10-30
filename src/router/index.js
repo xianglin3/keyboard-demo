@@ -8,6 +8,7 @@ import trajectoryDyn from '@/pages/trajectoryDyn'
 import soundWave from '@/pages/soundWave'
 import orderCarousel from '@/pages/orderCarousel'
 import drawSound from '@/pages/drawSound'
+import moduleTest from '@/pages/moduleTest'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/draw-sound',
       name: 'drawSound',
       component: drawSound
-    }
+    },
+    {
+      path: '/module-test',
+      name: 'moduleTest',
+      component: moduleTest
+    },
   ]
 })

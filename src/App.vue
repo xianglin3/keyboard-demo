@@ -10,6 +10,7 @@
       <router-link to='/sound-wave'>音波图</router-link>
       <router-link to='/order-carousel'>上台连麦</router-link>
       <router-link to='/draw-sound'>音量图</router-link>
+      <router-link to='/module-test'>模块加载测试</router-link>
     </p>
     <router-view />
   </div>
@@ -19,13 +20,13 @@
 import 'flex.css'
 export default {
   name: 'App',
-  data () {
+  data() {
     return {
       //
     }
   },
   methods: {
-    initMathJax () {
+    initMathJax() {
       MathJax.Hub.Config({
         tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
         messageStyle: "none", //不显示信息
@@ -44,7 +45,7 @@ export default {
       MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
     },
   },
-  mounted () {
+  mounted() {
     // this.initMathJax()
   }
 }
