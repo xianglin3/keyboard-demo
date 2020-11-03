@@ -9,6 +9,7 @@ import soundWave from '@/pages/soundWave'
 import orderCarousel from '@/pages/orderCarousel'
 import drawSound from '@/pages/drawSound'
 import moduleTest from '@/pages/moduleTest'
+import testEvent from '@/pages/testEvent'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/module-test',
       name: 'moduleTest',
       component: moduleTest
+    },
+    {
+      path: '/test-event',
+      name: 'testEvent',
+      component: testEvent
     },
   ]
 })
