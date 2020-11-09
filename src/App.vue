@@ -12,6 +12,7 @@
       <router-link to='/draw-sound'>音量图</router-link>
       <router-link to='/module-test'>模块加载测试</router-link>
       <router-link to='/test-event'>测试事件监听</router-link>
+      <router-link to='/pass-value'>传值demo</router-link>
     </p>
     <router-view />
   </div>

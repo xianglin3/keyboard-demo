@@ -10,6 +10,7 @@ import orderCarousel from '@/pages/orderCarousel'
 import drawSound from '@/pages/drawSound'
 import moduleTest from '@/pages/moduleTest'
 import testEvent from '@/pages/testEvent'
+import passValue from '@/pages/passValue'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ export default new Router({
       path: '/test-event',
       name: 'testEvent',
       component: testEvent
+    },
+    {
+      path: '/pass-value',
+      name: 'passValue',
+      component: passValue
     },
   ]
 })
