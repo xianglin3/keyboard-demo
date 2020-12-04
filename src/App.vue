@@ -13,6 +13,7 @@
       <router-link to='/module-test'>模块加载测试</router-link>
       <router-link to='/test-event'>测试事件监听</router-link>
       <router-link to='/pass-value'>传值demo</router-link>
+      <router-link to='/common-test'>公用测试模块</router-link>
     </p>
     <router-view />
   </div>

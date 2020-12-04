@@ -11,6 +11,7 @@ import drawSound from '@/pages/drawSound'
 import moduleTest from '@/pages/moduleTest'
 import testEvent from '@/pages/testEvent'
 import passValue from '@/pages/passValue'
+import commonTest from '@/pages/commonTest'
 
 Vue.use(Router)
 
@@ -70,6 +71,11 @@ export default new Router({
       path: '/pass-value',
       name: 'passValue',
       component: passValue
+    },
+    {
+      path: '/common-test',
+      name: 'commonTest',
+      component: commonTest
     },
   ]
 })
