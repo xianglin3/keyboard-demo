@@ -22,8 +22,7 @@ export default {
   },
   props: {
     parentData: {
-      type: String,
-      default: '默认值'
+      type: [String, Number],
     }
   },
   data() {

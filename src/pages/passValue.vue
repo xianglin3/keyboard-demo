@@ -39,8 +39,10 @@ export default {
     },
     changeA() {
       // this.$children[0].msg = 'hello world new';
-      this.$refs.dema.msg = '哈哈哈哈哈哈'
-      console.error(this.$refs)
+      // this.$refs.dema.msg = '哈哈哈哈哈哈'
+      // console.error(this.$refs)
+
+      this.msg = 123;
     }
   },
 }
