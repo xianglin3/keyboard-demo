@@ -12,6 +12,7 @@ import moduleTest from '@/pages/moduleTest'
 import testEvent from '@/pages/testEvent'
 import passValue from '@/pages/passValue'
 import commonTest from '@/pages/commonTest'
+import seatStage from '@/pages/seatStage'
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ export default new Router({
       path: '/common-test',
       name: 'commonTest',
       component: commonTest
+    },
+    {
+      path: '/seat-stage',
+      name: 'seatStage',
+      component: seatStage
     },
   ]
 })
