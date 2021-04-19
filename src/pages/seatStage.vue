@@ -10,6 +10,7 @@
         <div class="seat-users" ref="seatUsers">
           <div v-for="(item,index) in listData" class="user" :ref="`demo${index}`" :style="{order: index}">
             <div class="user-content" :ref="`user${item.id}`">{{item.id}}</div>
+            <div class="user-brother"></div>
           </div>
         </div>
       </div>
@@ -86,18 +87,27 @@ export default {
         flex-wrap: wrap;
         transition: all ease .2s;
         .user{
-          width: 108px;
+          // width: 108px;
           height: 108px;
           background:orange;
           border: 1px solid #333;
           // display: inline-block;
           order: 1;
+          display: flex;
+          flex-direction: column;
+          overflow:hidden;
           .user-content{
             width:108px;
             height: 108px;
             background:darkgray;
             text-align: center;
             line-height: 108px;
+          }
+          .user-brother{
+            flex: auto;
+            width: 108px;
+            height: 108px;
+            background: red;
           }
         }
       }

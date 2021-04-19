@@ -2,6 +2,8 @@
   <div id="app">
     <h1>dream home</h1>
     <p>
+      <router-link to='/test-one'>testone</router-link>
+      <router-link to='/test-two'>testwo</router-link>
       <router-link to='/math-jax'>mathJax</router-link>
       <router-link to='/keyboard'>keyboard</router-link>
       <router-link to='/swiper-photo'>图片轮播</router-link>

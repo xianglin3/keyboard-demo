@@ -13,6 +13,8 @@ import testEvent from '@/pages/testEvent'
 import passValue from '@/pages/passValue'
 import commonTest from '@/pages/commonTest'
 import seatStage from '@/pages/seatStage'
+import testone from '@/pages/testone'
+import testwo from '@/pages/testwo'
 
 Vue.use(Router)
 
@@ -82,6 +84,16 @@ export default new Router({
       path: '/seat-stage',
       name: 'seatStage',
       component: seatStage
+    },
+    {
+      path: '/test-one',
+      name: 'testone',
+      component: testone
+    },
+    {
+      path: '/test-two',
+      name: 'testwo',
+      component: testwo
     },
   ]
 })
