@@ -15,6 +15,7 @@ import commonTest from '@/pages/commonTest'
 import seatStage from '@/pages/seatStage'
 import testone from '@/pages/testone'
 import testwo from '@/pages/testwo'
+import logFilter from '@/pages/logFilter'
 
 Vue.use(Router)
 
@@ -94,6 +95,11 @@ export default new Router({
       path: '/test-two',
       name: 'testwo',
       component: testwo
+    },
+    {
+      path: '/log-filter',
+      name: 'logFilter',
+      component: logFilter
     },
   ]
 })

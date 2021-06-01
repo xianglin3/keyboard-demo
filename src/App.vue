@@ -17,6 +17,7 @@
       <router-link to='/pass-value'>传值demo</router-link>
       <router-link to='/common-test'>公用测试模块</router-link>
       <router-link to='/seat-stage'>座位席测试</router-link>
+      <router-link to='/log-filter'>日志数据处理</router-link>
     </p>
     <router-view />
   </div>
