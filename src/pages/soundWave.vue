@@ -44,163 +44,64 @@
   </div>
 </template>
 <script>
-//必须引入的核心，换成require也是一样的。注意：recorder-core会自动往window下挂载名称为Recorder对象，全局可调用window.Recorder，也许可自行调整相关源码清除全局污染
-// import Recorder from 'recorder-core'
-
-// //需要使用到的音频格式编码引擎的js文件统统加载进来
-// import 'recorder-core/src/engine/mp3'
-// import 'recorder-core/src/engine/mp3-engine'
-// //可选的扩展支持项 
-// import 'recorder-core/src/extensions/waveview' // 动态波形显示
-// import 'recorder-core/src/extensions/frequency.histogram.view' // 频率直方图显示
-// import 'recorder-core/src/extensions/lib.fft.js'
-// import 'recorder-core/src/extensions/wavesurfer.view' // 音频可视化波形显示
+import HZRecorder from '../js/record';
 export default {
   name: 'soundWave',
   data () {
     return {
-      waveConfigs: {
-        WaveView: [
-          {
-            testTitle: "颜色",
-            linear1: [0, "#0b1", 1, "#0b1"],
-            linear2: [0, "#0b1", 1, "#0b1"],
-            linearBg: [0, "gold", 1, "#0b1"]
-          }
-        ],
-        WaveSurferView: [
-          {
-            testTitle: "底部显示+慢速",
-            position: -1,
-            duration: 10000,
-            linear: [0, "#666", 1, "#666"]
-          },
-          {
-            testTitle: "由右到左+快速",
-            direction: -1,
-            duration: 1000,
-            linear: [0, "#f00", 1, "#f00"]
-          }
-        ],
-        FrequencyHistogramView: [
-          {
-            testTitle: "中部显示",
-            lineCount: 70,
-            position: 0,
-            minHeight: 1,
-            stripeEnable: false,
-            linear: [0, "#06c", 1, "#06c"]
-          },
-          {
-            testTitle: "粗大",
-            lineCount: 15,
-            spaceWidth: 1.5,
-            stripeEnable: false,
-            linear: [0, "#ab00ff", 1, "#ab00ff"]
-          },
-          {
-            testTitle: "镜像",
-            lineCount: 15,
-            position: 0,
-            minHeight: 1,
-            fallDuration: 400,
-            stripeEnable: false,
-            mirrorEnable: true
-          },
-          {
-            testTitle: "稀疏镜像",
-            lineCount: 8,
-            position: 0,
-            minHeight: 1,
-            fallDuration: 400,
-            stripeEnable: false,
-            mirrorEnable: true,
-            linear: [0, "#0ac", 1, "#0ac"]
-          },
-          {
-            testTitle: "顶部显示+粗大",
-            lineCount: 15,
-            position: 1,
-            spaceWidth: 1.5,
-            stripeEnable: false,
-            linear: [0, "#ab00ff", 1, "#ab00ff"]
-          }
-        ]
-      },
-      rec: null,
-      wave: null
     }
   },
   methods: {
     // 打开录音 请求录音权限
     recOpen () {
-      this.rec = null;
-      // this.wave = null;
-      var wave
-      var newRec = Recorder({
-        type: "mp3", sampleRate: 16000, bitRate: 16 //mp3格式，指定采样率hz、比特率kbps，其他参数使用默认配置；注意：是数字的参数必须提供数字，不要用字符串；需要使用的type类型，需提前把格式支持文件加载进来，比如使用wav格式需要提前加载wav.js编码引擎
-        , onProcess: function (buffers, powerLevel, bufferDuration, bufferSampleRate, newBufferIdx, asyncEnd) {
-          //录音实时回调，大约1秒调用12次本回调
-          document.querySelector(".recpowerx").style.width = powerLevel + "%";
-          document.querySelector(".recpowert").innerText = bufferDuration + " / " + powerLevel;
-
-          //可视化图形绘制
-          wave.input(buffers[buffers.length - 1], powerLevel, bufferSampleRate);
+      const config = {
+        wavSet:{
+          elem:".recwave", //自动显示到dom，并以此dom大小为显示大小
+              //或者配置显示大小，手动把waveviewObj.elem显示到别的地方
+          // ,width:0 //显示宽度
+          // ,height:0 //显示高度
+          
+          //以上配置二选一
+          
+          scale:2, //缩放系数，应为正整数，使用2(3? no!)倍宽高进行绘制，避免移动端绘制模糊
+          speed:10, //移动速度系数，越大越快
+          lineWidth:9, //线条基础粗细        
+          //渐变色配置：[位置，css颜色，...] 位置: 取值0.0-1.0之间
+          linear1:[0,"rgba(150,96,238,1)",0.2,"rgba(170,79,249,1)",1,"rgba(53,199,253,1)"], //线条渐变色1，从左到右
+          linear2:[0,"rgba(209,130,255,0.6)",1,"rgba(53,199,255,0.6)"], //线条渐变色2，从左到右
+          linearBg:[0,"rgba(255,255,255,0.2)",1,"rgba(54,197,252,0.2)"], //背景渐变色，从上到下
+        },
+        freSet:{
+          elem:".recwave", //自动显示到dom，并以此dom大小为显示大小
+              //或者配置显示大小，手动把waveviewObj.elem显示到别的地方
+          // ,width:0 //显示宽度
+          // ,height:0 //显示高度
+          lineCount: 5,
+          //以上配置二选一
+          //当发生绘制时会回调此方法，参数为当前绘制的频率数据和采样率，可实现多个直方图同时绘制，只消耗一个input输入和计算时间
+          // onDraw:function(frequencyData,sampleRate){}
         }
-      });
-      // createDelayDialog(); //我们可以选择性的弹一个对话框：为了防止移动端浏览器存在第三种情况：用户忽略，并且（或者国产系统UC系）浏览器没有任何回调，此处demo省略了弹窗的代码
-      newRec.open(() => {//打开麦克风授权获得相关资源
-        // dialogCancel(); //如果开启了弹框，此处需要取消
-
-        this.rec = newRec;
-        //此处创建这些音频可视化图形绘制浏览器支持妥妥的
-        wave = Recorder.FrequencyHistogramView({ elem: ".recwave", position: 0, minHeight: 2, mirrorEnable: true, stripeEnable: false });
-
-        console.log("已打开录音，可以点击录制开始录音了", 2);
-      }, function (msg, isUserNotAllow) {//用户拒绝未授权或不支持
-        // dialogCancel(); //如果开启了弹框，此处需要取消
-        console.log((isUserNotAllow ? "UserNotAllow，" : "") + "打开录音失败：" + msg, 1);
-      });
-
-      window.waitDialogClick = function () {
-        // dialogCancel();
-        console.log("打开失败：权限请求被忽略，<span style='color:#f00'>用户主动点击的弹窗</span>", 1);
-      };
-    },
-    recClose () {
-      if (this.rec) {
-        this.rec.close();
       }
-    },
-    recStart () {//打开了录音后才能进行start、stop调用
-      if (this.rec && Recorder.IsOpen()) {
-        this.rec.start();
-      }
-    },
-    recStop () {
-      if (!(this.rec && Recorder.IsOpen())) {
-        return;
-      };
-      this.rec.stop(function (blob, duration) {
-        console.log(blob, (window.URL || webkitURL).createObjectURL(blob), "时长:" + duration + "ms");
-        console.log("已录制mp3：" + duration + "ms " + blob.size + "字节，可以点击播放、上传了", 2);
-      }, function (msg) {
-        console.log("录音失败:" + msg, 1);
+      HZRecorder.recInt(config).then(() => {
+        alert('请求成功')
+      }).catch((error) => {
+        console.error(error)
       })
     },
+    recClose () {
+      HZRecorder.recClose();
+    },
+    recStart () {
+      HZRecorder.recStart();
+    },
+    recStop () {
+      HZRecorder.recStop();
+    },
     recPause () {
-      if (this.rec && Recorder.IsOpen()) {
-        this.rec.pause();
-      } else {
-        console.log("未打开录音", 1);
-      };
+      HZRecorder.recPause();
     },
     recResume () {
-      if (this.rec && Recorder.IsOpen()) {
-        this.rec.resume();
-      } else {
-        console.log("未打开录音", 1);
-      }
+      HZRecorder.recResume();
     }
   }
 }

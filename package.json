@@ -16,6 +16,7 @@
   "dependencies": {
     "flex.css": "^1.1.7",
     "mathquill": "^0.10.1-a",
+    "recorder-core": "^1.1.21021500",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.5.1"
