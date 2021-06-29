@@ -1,5 +1,4 @@
 // recorder-core文档地址：https://github.com/xiangyuecn/Recorder
-// 必须引入的核心，换成require也是一样的。
 // 注意：recorder-core会自动往window下挂载名称为Recorder对象，全局可调用window.Recorder，也可自行调整相关源码清除全局污染
 import Recorder from 'recorder-core';
 
@@ -10,11 +9,14 @@ import 'recorder-core/src/engine/mp3-engine';
 // 以上三个也可以合并使用压缩好的recorder.xxx.min.js
 // 比如 import Recorder from 'recorder-core/recorder.mp3.min' //已包含recorder-core和mp3格式支持
 
-// 可选的扩展支持项
+// 可选的扩展支持项---按需引入
+// 波形音量图
 // import 'recorder-core/src/extensions/waveview';
+// 柱形音量图
 import 'recorder-core/src/extensions/lib.fft';
 import 'recorder-core/src/extensions/frequency.histogram.view';
 
+window.URL = window.URL || window.webkitURL;
 const waveDefaultConfig = {
   freConfig: {
     scale:2, //缩放系数，应为正整数，使用2(3? no!)倍宽高进行绘制，避免移动端绘制模糊
@@ -89,39 +91,54 @@ function recInt(setConfig) {
 }
 /**打开录音 **/
 function recOpen(success,fail) {
-  rec.open(success,fail);
+  rec&&rec.open(success,fail);
 }
 /**开始录音**/
 function recStart(){//打开了录音后才能进行start、stop调用
-    rec.start();
+    rec&&rec.start();
 };
 // 暂停录音
 function recPause() {
-  rec.pause();
+  rec&&rec.pause();
 }
 // 恢复继续录音
 function recResume() {
-  rec.resume();
+  rec&&rec.resume();
 }
 /**结束录音**/
 function recStop(){
-    rec.stop(
-      (blob,duration) => {
-        console.log(blob,(window.URL||webkitURL).createObjectURL(blob),"时长:"+duration+"ms");
-        rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
-        rec=null;
-        return blob;
-      },
-      (msg) => {
-        console.log("录音失败:"+msg);
-        rec.close();//可以通过stop方法的第3个参数来自动调用close
-        rec=null;
-      }
-    );
+  return new Promise((resolve,reject) => {
+    try{
+      rec.stop(
+        (blob,duration) => {
+          const wavUrl = window.URL.createObjectURL(blob)
+          console.log(blob,window.URL.createObjectURL(blob),"时长:"+duration+"ms");
+          rec.close();//释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+          rec=null;
+          const resObj = {
+            blob,
+            wavUrl,
+            duration
+          }
+          resolve(resObj);
+        },
+        (msg) => {
+          console.log("录音失败:"+msg);
+          rec.close();//可以通过stop方法的第3个参数来自动调用close
+          rec=null;
+          reject(msg)
+        }
+      );
+    } catch(error) {
+      rec&&rec.close();
+      rec = null;
+      reject(error)
+    }
+  })
 };
 // 关闭录音，清理资源
 function recClose(success) {
-  rec.close(success);
+  rec&&rec.close(success);
   rec = null;
 }
 // 是否支持录音

@@ -95,7 +95,11 @@ export default {
       HZRecorder.recStart();
     },
     recStop () {
-      HZRecorder.recStop();
+      HZRecorder.recStop().then(res => {
+        console.log('fxl', res);
+      }).catch(error => {
+        console.error('录音失败:', error);
+      })
     },
     recPause () {
       HZRecorder.recPause();
